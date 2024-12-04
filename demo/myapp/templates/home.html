@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} 
+    BoingBoing Shop 
+{% endblock %}
+
+{% block content %} 
+    {% if user.is_authenticated %}
+        <h4 class="text-center my-4"> Welcome <span class="text-danger mx-2"> {{user.username.upper}} </span> To My Shop!!! </h4>
+    {% else %}
+        <h4 class="text-center my-4"> Welcome To My Shop!!! </h4>
+    {% endif %}
+    <marquee behavior="" direction="right" scrollamount="20"> PLEASE BUY I'M SO FKING BROKE</marquee>
+    <h3 class="color" > All Products </h3>
+    <h5 class="mx-5 phone text-center text-black-50"> Boing Boing's Phone </h5>
+             
+    {% if user.is_authenticated %}
+        <button class="button-85 bg-gradient my-3 w-100" type="submit"> <a href="/logout" > Log Out Account </a> </button>
+    {% else %}
+        <button class="button-85 bg-gradient my-3 w-100" type="submit"> <a href="/signup" > Register Account </a> </button>
+        <button class="button-85 bg-gradient my-3 w-100" type="submit"> <a href="/signin" > Log In Account </a> </button>
+    {% endif %}
+            
+{% endblock %}

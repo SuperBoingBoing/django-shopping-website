@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} 
+    BoingBoing Shop 
+{% endblock %} 
+        
+{% block content %} 
+    {% if user.is_authenticated %}
+        <h4 class="text-center my-4"> Welcome <span class="text-danger mx-2"> {{user.username.upper}} </span> To My Shop!!! </h4>
+    {% else %}
+        <h4 class="text-center my-4"> Welcome To My Shop!!! </h4>
+    {% endif %}
+        <marquee behavior="" direction="right" scrollamount="20"> PLEASE BUY I'M SO FKING BROKE</marquee>
+        <h3> All Snacks </h3>
+        <h5 class="mx-5 phone text-center text-black-50"> Boing Boing's Snack </h5>
+            
+    <div class="row">
+                
+        {% for snack in snacks %}
+        <div class="col my-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ snack.image_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title"> {{ snack.name }}</h5>
+                <p class="card-text"> ${{ snack.price }}</p>
+                <p class="card-text"> Stock: {{ snack.stock }}</p>
+                <a href="#" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>          
+        </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+            <button class="button-85 bg-gradient my-3" type="submit"> <a href="/logout" > Log Out Account </a></button>
+        {% else %}
+            <button class="button-85 bg-gradient my-3" type="submit"> <a href="/signup" > Register Account </a></button>
+            <button class="button-85 bg-gradient my-3" type="submit"> <a href="/signin" > Log In Account </a></button>
+        {% endif %}
+        </div> 
+            
+{% endblock %}
+        

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %} 
+    BoingBoing Shop 
+{% endblock %} 
+
+{% block content %} 
+    {% if user.is_authenticated %}
+        <h4 class="text-center my-4"> Welcome <span class="text-danger mx-2"> {{user.username.upper}} </span> To My Shop!!! </h4>
+    {% else %}
+        <h4 class="text-center my-4"> Welcome To My Shop!!! </h4>
+    {% endif %}
+    <marquee behavior="" direction="right" scrollamount="20"> PLEASE BUY I'M SO FKING BROKE</marquee>
+    <h3> All Products </h3>
+    <h5 class="mx-5 phone text-center text-black-50"> Boing Boing's People </h5>
+    
+    
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col my-4">
+            <div class="card" style="width: 18rem;">
+                <img src= "{{movie.image.url}}" >
+                <div class="card-body">
+                <h5 class="card-title"> {{movie.name}}</h5>
+                <p class="card-text"> $100,000 </p>
+                <p class="card-text"> Stock: 1 </p>
+                <a href="/addtocart"> <input type="button" class="btn btn-primary" value="Add To Cart" id="cart"> </a>
+            </div>
+        </div>
+    </div>
+        {% endfor %}   
+        
+        {% if user.is_authenticated %}
+            <button class="button-85 bg-gradient my-3" type="submit"> <a href="/logout" > Log Out Account </a></button>
+        {% else %}
+            <button class="button-85 bg-gradient my-3" type="submit"> <a href="/signup" > Register Account </a></button>
+            <button class="button-85 bg-gradient my-3" type="submit"> <a href="/signin" > Log In Account </a></button>
+        {% endif %}
+        
+    </div> 
+    <script>
+        var cart = document.getElementById("cart")
+
+        function cart(){
+            document.getElementById("cart").value = cart.value;
+        }
+    </script>
+{% endblock %}
